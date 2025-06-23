@@ -206,6 +206,7 @@ export const useCalculator = () => {
   }, []);
 
   let partialResult: string | null = null;
+
   if (
     state.previousValue !== null &&
     state.operation &&
@@ -217,19 +218,19 @@ export const useCalculator = () => {
       let result: number | null = null;
       switch (state.operation) {
         case "add":
-          result = calculator.add(state.previousValue, inputValue);
+          result = calculator.add(state.previousValue, inputValue, true);
           break;
         case "subtract":
-          result = calculator.subtract(state.previousValue, inputValue);
+          result = calculator.subtract(state.previousValue, inputValue, true);
           break;
         case "multiply":
-          result = calculator.multiply(state.previousValue, inputValue);
+          result = calculator.multiply(state.previousValue, inputValue, true);
           break;
         case "divide":
-          result = calculator.divide(state.previousValue, inputValue);
+          result = calculator.divide(state.previousValue, inputValue, true);
           break;
         case "power":
-          result = calculator.power(state.previousValue, inputValue);
+          result = calculator.power(state.previousValue, inputValue, true);
           break;
       }
       if (result !== null) partialResult = String(result);

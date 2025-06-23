@@ -3,45 +3,45 @@ import type { CalculationHistory } from "../types/calculator.types";
 export class Calculator {
   private history: CalculationHistory[] = [];
 
-  add(a: number, b: number): number {
+  add(a: number, b: number, isPreviewResult?: boolean): number {
     this.validateNumbers(a, b);
     const result = a + b;
-    this.addToHistory("add", [a, b], result);
+    if (!isPreviewResult) this.addToHistory("add", [a, b], result);
     return result;
   }
 
-  subtract(a: number, b: number): number {
+  subtract(a: number, b: number, isPreviewResult?: boolean): number {
     this.validateNumbers(a, b);
     const result = a - b;
-    this.addToHistory("subtract", [a, b], result);
+    if (!isPreviewResult) this.addToHistory("subtract", [a, b], result);
     return result;
   }
 
-  multiply(a: number, b: number): number {
+  multiply(a: number, b: number, isPreviewResult?: boolean): number {
     this.validateNumbers(a, b);
     const result = a * b;
-    this.addToHistory("multiply", [a, b], result);
+    if (!isPreviewResult) this.addToHistory("multiply", [a, b], result);
     return result;
   }
 
-  divide(a: number, b: number): number {
+  divide(a: number, b: number, isPreviewResult?: boolean): number {
     this.validateNumbers(a, b);
     if (b === 0) {
       throw new Error("No se puede dividir por cero");
     }
     const result = a / b;
-    this.addToHistory("divide", [a, b], result);
+    if (!isPreviewResult) this.addToHistory("divide", [a, b], result);
     return result;
   }
 
-  power(base: number, exponent: number): number {
+  power(base: number, exponent: number, isPreviewResult?: boolean): number {
     this.validateNumbers(base, exponent);
     const result = Math.pow(base, exponent);
-    this.addToHistory("power", [base, exponent], result);
+    if (!isPreviewResult) this.addToHistory("power", [base, exponent], result);
     return result;
   }
 
-  sqrt(n: number): number {
+  sqrt(n: number, isPreviewResult?: boolean): number {
     this.validateNumbers(n);
     if (n < 0) {
       throw new Error(
@@ -49,7 +49,7 @@ export class Calculator {
       );
     }
     const result = Math.sqrt(n);
-    this.addToHistory("sqrt", [n], result);
+    if (!isPreviewResult) this.addToHistory("sqrt", [n], result);
     return result;
   }
 
